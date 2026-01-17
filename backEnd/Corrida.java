@@ -1,6 +1,6 @@
 package backEnd;
 
-public class Corrida {
+public class Corrida { //funciona?
 	private Motorista motorista;
 	private Usuario usuario;
 	private float distancia;
