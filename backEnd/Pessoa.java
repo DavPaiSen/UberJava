@@ -4,6 +4,7 @@ package backEnd;
 public class Pessoa {
 	protected String cpfString;
 	protected String nomeString;
+	protected String nomeSocialString;
 	protected int numeroViagens;
 	protected float media;
 	
@@ -45,7 +46,13 @@ public class Pessoa {
 		this.nomeString = nomeString;
 	}
 
+	public String getNomeSocialString() {
+		return nomeSocialString;
+	}
 
+	public void setNomeSocialString(String nomeSocialString) {
+		this.nomeSocialString = nomeSocialString;
+	}
 
 	public boolean cpfValido(String validar) {
 		
@@ -92,9 +99,10 @@ public class Pessoa {
 
 
 
-	public Pessoa(String cpfString, String nomeString) {
+	public Pessoa(String cpfString, String nomeString, String nomeSocialString) {
 		setCpfString(cpfString);
 		setNomeString(nomeString);
+		setNomeSocialString(nomeSocialString);
 		numeroViagens = 0;
 		media = 5;
 	}

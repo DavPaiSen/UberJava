@@ -1,6 +1,6 @@
 package backEnd;
 
-public class Corrida { //funciona?
+public class Corrida {
 	private Motorista motorista;
 	private Usuario usuario;
 	private float distancia;
@@ -15,6 +15,7 @@ public class Corrida { //funciona?
 	 * 1 - cancelada pelo usuario
 	 * 2 - cancelada pelo motorista
 	 */
+	private Veiculo veiculo = motorista.veiculoAtivo();
 	
 	public void cancela(Pessoa quem) {
 		if (quem.getClass().getName() == "Usuario") {
@@ -23,6 +24,7 @@ public class Corrida { //funciona?
 			cancelada = 2;
 		}
 		encerrada = true;
+		finalizada();
 	}
 	
 	public Motorista getMotorista() {
@@ -62,11 +64,18 @@ public class Corrida { //funciona?
 	}
 
 	public float valor() {
-		Veiculo veiculo = motorista.veiculoAtivo();
 		if (usuario.isVip()) {
 			return veiculo.valor(distancia) * (1 - usuario.getDesconto());
 		}
 		return veiculo.valor(distancia);
+	}
+	
+	private void finalizando() {
+		veiculo.setStatus(3);
+	}
+	
+	private void finalizada() {
+		veiculo.setStatus(0);
 	}
 	
 	public Corrida(Motorista motorista, Usuario usuario, float distancia, int horaSolicitacao, int data) {
@@ -77,5 +86,6 @@ public class Corrida { //funciona?
 		this.data = data;
 		cancelada = 0;
 		encerrada = false;
+		veiculo.setStatus(2); //nao disponivel
 	}
 }

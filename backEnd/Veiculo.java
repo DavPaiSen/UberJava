@@ -1,11 +1,11 @@
 package backEnd;
 
-public abstract class Veiculo {
+public abstract class Veiculo { 
 	protected String placaString;
 	protected String chassiString;
 	protected String corString;
 	protected int capacidadePassageiros;
-	protected boolean ativo;
+	protected boolean ativo; // tem que ativar o veiculo pelo motorista
 	protected int status;
 	public abstract float getTaxaMinima();
 	public abstract float getValorKm();
@@ -20,6 +20,27 @@ public abstract class Veiculo {
 		return (getTaxaMinima() + getValorKm() * distancia);
 	}
 	
+	public String getPlacaString() {
+		return placaString;
+	}
+	public String getChassiString() {
+		return chassiString;
+	}
+	public String getCorString() {
+		return corString;
+	}
+	public int getCapacidadePassageiros() {
+		return capacidadePassageiros;
+	}
+	public boolean isAtivo() {
+		return ativo;
+	}
+	public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
 	public Veiculo(String placaString, String chassiString, String corString, int capacidadePassageiros) {
 		this.placaString = placaString;
 		this.chassiString = chassiString;

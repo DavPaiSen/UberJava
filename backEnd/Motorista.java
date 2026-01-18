@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class Motorista extends Pessoa{
 	private String enderecoString;
 	private String nascimentoString;
+	private String cnhString;
 	private boolean ativo;
 	private ArrayList<Veiculo> veiculos = new ArrayList<>();
 	
@@ -27,6 +28,48 @@ public class Motorista extends Pessoa{
 		return false;
 	}
 	
+	public boolean ativarVeiculo(String placa) {
+		if (veiculos.isEmpty() || veiculoAtivo() != null) {
+			return false; //tem que ter veiculos cadastrados e nao pode existir um veiculo ja ativo
+		}
+		for (int i = 0; i < veiculos.size(); i ++) {
+			Veiculo atual = veiculos.get(i);
+			if (atual.getPlacaString().equals(placa)) {
+				atual.ativo = true;
+				return true;
+			}
+		}
+		return false;//nao achou
+	}
+	
+	public void apagarTodosVeiculos() { //quando for remover o motorista, remove tambem os seus veiculos
+		while (!veiculos.isEmpty()) {
+			veiculos.removeFirst();
+		}
+	}
+	
+	public boolean apagarVeiculo(String placa) {
+		if (veiculos.isEmpty()) {
+			return false;
+		}
+		for (int i = 0; i < veiculos.size(); i ++) {
+			Veiculo atual = veiculos.get(i);
+			if (atual.getPlacaString().equals(placa)) {
+				veiculos.remove(i);
+				return true;
+			}
+		}
+		return false; //nao achou
+	}
+	
+	public String getCnhString() {
+		return cnhString;
+	}
+
+	public void setCnhString(String cnhString) {
+		this.cnhString = cnhString;
+	}
+
 	public String getEnderecoString() {
 		return enderecoString;
 	}
@@ -46,7 +89,7 @@ public class Motorista extends Pessoa{
 	
 	public void desativar() {
 		ativo = false;
-		for (int i = 0; i < veiculos.size(); i++) {
+		for (int i = 0; i < veiculos.size(); i++) { //garante que todos os veiculos sejam desativados quando o motorista e desativado
 			veiculos.get(i).ativo = false;
 		}
 	}
@@ -64,11 +107,12 @@ public class Motorista extends Pessoa{
 		return null;
 	}
 
-	public Motorista(String cpfString, String nomeString, String enderecoString, String nascimentoString) {
-		super(cpfString, nomeString);
+	public Motorista(String cpfString, String nomeString, String nomeSocialString, String enderecoString, String nascimentoString, String cnhString) {
+		super(cpfString, nomeString, nomeSocialString);
 		this.enderecoString = enderecoString;
 		this.nascimentoString = nascimentoString;
 		this.ativo = false;
+		this.cnhString = cnhString;
 	}
 	
 	
