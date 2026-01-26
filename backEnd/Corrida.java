@@ -9,7 +9,7 @@ public class Corrida {
 	private int horaInicio;
 	private int horaDestino;
 	private int cancelada;
-	private boolean encerrada;
+	private boolean encerrada; //colocar um atributo boolean pago???? se for pagar no dinheiro para o motorista e importante ter
 	/**
 	 * 0 - nao cancelada
 	 * 1 - cancelada pelo usuario

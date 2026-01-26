@@ -2,7 +2,7 @@
 package backEnd;
 
 public class Pessoa {
-	protected String cpfString;
+	protected String cpfString; //tratar cpf como id
 	protected String nomeString;
 	protected String nomeSocialString;
 	protected int numeroViagens;

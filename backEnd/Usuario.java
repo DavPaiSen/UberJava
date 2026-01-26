@@ -5,14 +5,22 @@ public class Usuario extends Pessoa{
 	private String emailString;
 	private String dataNascimentoString;
 	private int sexo;
-	private static int viagensParaVip;
+	private int pagamento;
+	/**
+	 * 0 - cartao credito
+	 * 1 - cartao debito
+	 * 2 - pix
+	 * 3 - dinheiro
+	 */
 	private boolean vip;
 	private float desconto; //nao fala como que a porcentagem de desconto e definida?????
 	/**
 	 * 0 - masculino
 	 * 1 - feminino
-	 * 2 - outros? TODO ver se esse nome aqui ta ok
+	 * 2 - outro
 	 */
+	private static int viagensParaVip;
+	
 
 	public String getNroCelularString() {
 		return nroCelularString;
@@ -65,12 +73,13 @@ public class Usuario extends Pessoa{
 	}
 
 	public Usuario(String cpfString, String nomeString, String nomeSocialString, String nroCelularString, String emailString,
-			String dataNascimentoString, int sexo) {
+			String dataNascimentoString, int sexo, int pagamento) {
 		super(cpfString, nomeString, nomeSocialString);
 		this.nroCelularString = nroCelularString;
 		this.emailString = emailString;
 		this.dataNascimentoString = dataNascimentoString;
 		this.sexo = sexo;
+		this.pagamento = pagamento;
 		vip = false;
 		desconto = 0;
 	}
