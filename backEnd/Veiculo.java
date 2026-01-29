@@ -1,14 +1,14 @@
 package backEnd;
 
-public abstract class Veiculo { 
+public abstract class Veiculo { //classe abstrata
 	protected String placaString;
 	protected String chassiString;
 	protected String corString;
 	protected int capacidadePassageiros;
 	protected boolean ativo; // tem que ativar o veiculo pelo motorista
 	protected int status;
-	public abstract float getTaxaMinima();
-	public abstract float getValorKm();
+	public abstract float getTaxaMinima(); //metodo abstrato
+	public abstract float getValorKm(); //outro metodo abstrato
 	/** Status:
 	 * 0 - disponivel
 	 * 1 - nao disponivel

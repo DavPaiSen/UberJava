@@ -6,8 +6,8 @@ public class Corrida {
 	private float distancia;
 	private int horaSolicitacao;
 	private int data;
-	private int horaInicio;
-	private int horaDestino;
+	private int horaInicio;//hora que o motorista chegou a origem
+	private int horaDestino;//hora que chegaram ao destino
 	private int cancelada;
 	private boolean encerrada; //colocar um atributo boolean pago???? se for pagar no dinheiro para o motorista e importante ter
 	/**

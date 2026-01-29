@@ -28,5 +28,11 @@ public class Principal {
 		UberComfort.setValorKm(3f);
 		UberComfort.setTaxaMinima(15f);
 		Corrida.setPorcentagemMotorista(0.6f);
+		boolean ehUsuario;
+		if (ehUsuario) {
+			paginaUsuario();//TODO
+		} else {
+			paginaMotorista();//TODOW
+		}
 	}
 }

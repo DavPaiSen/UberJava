@@ -17,6 +17,11 @@ public class Motorista extends Pessoa{
 	public void sacar() {
 		saldo = 0;//finge que passa pra conta bancaria do motorista
 	}
+	
+	public float getSaldo() {
+		return saldo;
+	}
+
 	public void adicionarVeiculo(Veiculo adicionar) {
 		veiculos.add(adicionar);
 	}
