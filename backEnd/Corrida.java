@@ -15,6 +15,7 @@ public class Corrida {
 	 * 1 - cancelada pelo usuario
 	 * 2 - cancelada pelo motorista
 	 */
+	private static float porcentagemMotorista;
 	private Veiculo veiculo = motorista.veiculoAtivo();
 	
 	public void cancela(Pessoa quem) {
@@ -27,6 +28,14 @@ public class Corrida {
 		finalizada();
 	}
 	
+	public static float getPorcentagemMotorista() {
+		return porcentagemMotorista;
+	}
+
+	public static void setPorcentagemMotorista(float porcentagemMotorista) {
+		Corrida.porcentagemMotorista = porcentagemMotorista;
+	}
+
 	public Motorista getMotorista() {
 		return motorista;
 	}
@@ -70,11 +79,15 @@ public class Corrida {
 		return veiculo.valor(distancia);
 	}
 	
-	private void finalizando() {
+	public void finalizando() {
 		veiculo.setStatus(3);
 	}
 	
 	private void finalizada() {
+		if (cancelada == 1) { //se foi cancelada pelo usuario o motorista recebe uma porcentagem do valor total
+			Veiculo veiculo = motorista.veiculoAtivo();
+			motorista.pagar(veiculo.valor(distancia) * 0.5f); //50%, valor arbitrario
+		}
 		veiculo.setStatus(0);
 	}
 	

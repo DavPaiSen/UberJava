@@ -41,6 +41,14 @@ public abstract class Veiculo {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+	
+	public void ativar() {
+		ativo = true;
+	}
+	
+	public void desativar() {
+		ativo = false;
+	}
 	public Veiculo(String placaString, String chassiString, String corString, int capacidadePassageiros) {
 		this.placaString = placaString;
 		this.chassiString = chassiString;

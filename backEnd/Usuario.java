@@ -5,6 +5,11 @@ public class Usuario extends Pessoa{
 	private String emailString;
 	private String dataNascimentoString;
 	private int sexo;
+	/**
+	 * 0 - masculino
+	 * 1 - feminino
+	 * 2 - outro
+	 */
 	private int pagamento;
 	/**
 	 * 0 - cartao credito
@@ -14,13 +19,20 @@ public class Usuario extends Pessoa{
 	 */
 	private boolean vip;
 	private float desconto; //nao fala como que a porcentagem de desconto e definida?????
-	/**
-	 * 0 - masculino
-	 * 1 - feminino
-	 * 2 - outro
-	 */
 	private static int viagensParaVip;
 	
+	
+	public static int getViagensParaVip() {
+		return viagensParaVip;
+	}
+
+	public void setDesconto(float desconto) {
+		this.desconto = desconto;
+	}
+
+	public static void setViagensParaVip(int viagensParaVip) {
+		Usuario.viagensParaVip = viagensParaVip;
+	}
 
 	public String getNroCelularString() {
 		return nroCelularString;
@@ -53,8 +65,6 @@ public class Usuario extends Pessoa{
 	public void setSexo(int sexo) {
 		this.sexo = sexo;
 	}
-	
-	
 
 	public boolean isVip() {
 		return vip;
@@ -62,6 +72,14 @@ public class Usuario extends Pessoa{
 
 	public float getDesconto() {
 		return desconto;
+	}
+
+	public int getPagamento() {
+		return pagamento;
+	}
+
+	public void setPagamento(int pagamento) {
+		this.pagamento = pagamento;
 	}
 
 	@Override

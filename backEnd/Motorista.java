@@ -1,5 +1,5 @@
 package backEnd;
-import java.awt.List;
+
 import java.util.ArrayList;
 
 public class Motorista extends Pessoa{
@@ -8,8 +8,15 @@ public class Motorista extends Pessoa{
 	private String cnhString;
 	private boolean ativo;
 	private ArrayList<Veiculo> veiculos = new ArrayList<>();
+	private float saldo;
 	
+	public void pagar(float valor) {
+		saldo += valor;
+	}
 	
+	public void sacar() {
+		saldo = 0;//finge que passa pra conta bancaria do motorista
+	}
 	public void adicionarVeiculo(Veiculo adicionar) {
 		veiculos.add(adicionar);
 	}
@@ -90,7 +97,7 @@ public class Motorista extends Pessoa{
 	public void desativar() {
 		ativo = false;
 		for (int i = 0; i < veiculos.size(); i++) { //garante que todos os veiculos sejam desativados quando o motorista e desativado
-			veiculos.get(i).ativo = false;
+			veiculos.get(i).desativar();;
 		}
 	}
 	
@@ -113,6 +120,7 @@ public class Motorista extends Pessoa{
 		this.nascimentoString = nascimentoString;
 		this.ativo = false;
 		this.cnhString = cnhString;
+		saldo = 0f;
 	}
 	
 	
