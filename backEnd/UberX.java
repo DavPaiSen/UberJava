@@ -16,10 +16,12 @@ public class UberX extends Veiculo{
 
 	public static void setTaxaMinima(float taxaMinima) {
 		UberX.taxaMinima = taxaMinima;
+		UberPrioridade.setTaxaMinima(taxaMinima * 2);
 	}
 
 	public static void setValorKm(float valorKm) {
 		UberX.valorKm = valorKm;
+		UberPrioridade.setValorKm(valorKm * 2);
 	}
 
 	@Override

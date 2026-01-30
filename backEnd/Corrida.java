@@ -84,10 +84,14 @@ public class Corrida {
 	}
 	
 	private void finalizada() {
+		Veiculo veiculo = motorista.veiculoAtivo();
 		if (cancelada == 1) { //se foi cancelada pelo usuario o motorista recebe uma porcentagem do valor total
-			Veiculo veiculo = motorista.veiculoAtivo();
 			motorista.pagar(veiculo.valor(distancia) * 0.5f); //50%, valor arbitrario
+		} else {
+			motorista.pagar(veiculo.valor(distancia));
 		}
+		//recebe as notas do frontend e usa motorista.atualizarMedia() e usuario.atualizarMedia()
+		//finge que acontece coisas do pagamento preferencial do usuario???
 		veiculo.setStatus(0);
 	}
 	
