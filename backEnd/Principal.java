@@ -19,7 +19,7 @@ public class Principal {
 		return retorno;
 	}
 	
-	public Principal() {
+	public Principal() {//falta fazer um main de verdade e que funciona
 		Usuario.setViagensParaVip(10);
 		UberX.setValorKm(1f); //valor por km e taxa minima do prioridade sao o dobro do UberX
 		UberX.setTaxaMinima(5f);
@@ -29,10 +29,13 @@ public class Principal {
 		UberComfort.setTaxaMinima(15f);;
 		Corrida.setPorcentagemMotorista(0.6f);
 		boolean ehUsuario;
+		//pegar ehUsuario do front
+		/**
 		if (ehUsuario) {
-			paginaUsuario();//TODO
+			//paginaUsuario();//TODO
 		} else {
-			paginaMotorista();//TODO
+			//paginaMotorista();//TODO
 		}
+		**/
 	}
 }
