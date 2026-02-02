@@ -19,7 +19,7 @@ import java.awt.FlowLayout;
 import javax.swing.JSeparator;
 import javax.swing.UIManager;
 
-public class BemVindo extends JFrame {
+public class BemVindo extends JFrame { //ta feio mas ta funcionando entao ta bom
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
