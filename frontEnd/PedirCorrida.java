@@ -15,7 +15,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 
-public class Pedir_corrida extends JFrame {
+public class PedirCorrida extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -28,7 +28,7 @@ public class Pedir_corrida extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Pedir_corrida frame = new Pedir_corrida();
+					PedirCorrida frame = new PedirCorrida();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -40,7 +40,7 @@ public class Pedir_corrida extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Pedir_corrida() {
+	public PedirCorrida() {
 		setTitle("Pedir corrida");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -82,7 +82,7 @@ public class Pedir_corrida extends JFrame {
 		JLabel lblInsiraADistncia = new JLabel("Insira a distância até o destino:");
 		splitPane_2.setLeftComponent(lblInsiraADistncia);
 		
-		textField = new JTextField();//chamar InserirNumero se a entrada nao der certo por aqui
+		textField = new JTextField();
 		textField.setToolTipText("Apenas numeros, por favor");
 		splitPane_2.setRightComponent(textField);
 		textField.setColumns(10);
