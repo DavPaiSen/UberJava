@@ -9,6 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.JSplitPane;
 import java.awt.event.ActionListener;
+import java.security.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.BorderLayout;
 import javax.swing.SwingConstants;
@@ -61,8 +62,25 @@ public class BemVindo extends JFrame { //ta feio mas ta funcionando entao ta bom
 		contentPane.add(panel, BorderLayout.SOUTH);
 		
 		panel.add(splitPane);
+		btnCliente.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backEnd.Principal.setCliente(true);
+				CriarOuLogar criarOuLogar = new CriarOuLogar();
+				criarOuLogar.setVisible(true);
+				dispose();
+			}
+		});
 		
 		splitPane.setLeftComponent(btnCliente);
+		btnMotorista.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				backEnd.Principal.setCliente(false);
+				CriarOuLogar criarOuLogar = new CriarOuLogar();
+				criarOuLogar.setVisible(true);
+				dispose();
+				
+			}
+		});
 		
 		splitPane.setRightComponent(btnMotorista);
 		

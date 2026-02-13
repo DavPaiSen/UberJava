@@ -90,8 +90,7 @@ public class Usuario extends Pessoa{
 		}
 	}
 
-	public Usuario(String cpfString, String nomeString, String nomeSocialString, String nroCelularString, String emailString,
-			String dataNascimentoString, int sexo, int pagamento) {
+	public Usuario(String cpfString, String nomeString, String nomeSocialString, String nroCelularString, String emailString, String dataNascimentoString, int sexo, int pagamento) {
 		super(cpfString, nomeString, nomeSocialString);
 		this.nroCelularString = nroCelularString;
 		this.emailString = emailString;

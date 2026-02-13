@@ -19,7 +19,7 @@ public class Corrida {
 	private Veiculo veiculo = motorista.veiculoAtivo();
 	
 	public void cancela(Pessoa quem) {
-		if (quem.getClass().getName() == "Usuario") {
+		if (quem instanceof Usuario) {
 			cancelada = 1;
 		} else if (quem.getClass().getName() == "Motorista") {
 			cancelada = 2;
