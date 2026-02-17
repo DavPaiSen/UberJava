@@ -54,7 +54,7 @@ public class Pessoa {
 		this.nomeSocialString = nomeSocialString;
 	}
 
-	public boolean cpfValido(String validar) {
+	public static boolean cpfValido(String validar) {
 		
 		if (validar.length() != 11) {
 			return false;

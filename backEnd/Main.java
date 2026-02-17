@@ -15,8 +15,6 @@ public abstract class Main {
 		Corrida.setPorcentagemMotorista(0.6f);
 		BemVindo bemVindo = new BemVindo();
 		bemVindo.setVisible(true);
-		
-		
 	}
 
 }

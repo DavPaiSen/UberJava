@@ -7,7 +7,7 @@ public class Principal {
 	private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
 	private static ArrayList<Corrida> corridas = new ArrayList<Corrida>(); //id da corrida e a sua posicao no arraylist
 	private static boolean ehCliente;
-	
+
 	public static boolean isCliente() {
 		return ehCliente;
 	}
@@ -30,13 +30,21 @@ public class Principal {
 	
 	public static void adicionaUsuario(Usuario adicionar) {
 		usuarios.add(adicionar);
+		//System.out.println(adicionar.toString());
 	}
 	
 	public static void removerUsuario(Usuario remover) {
 		usuarios.remove(remover);
+		//tratar as exceções quando tiver a aula
 	}
 	
 	public static void adicionarMotorista(Motorista adicionar) {
 		motoristas.add(adicionar);
+		//System.out.println(adicionar.toString());
+	}
+	
+	public static void removerMotorista(Motorista remover) {
+		motoristas.remove(remover);
+		//tratar as exceções quando tiver a aula
 	}
 }

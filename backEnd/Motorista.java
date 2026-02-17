@@ -118,6 +118,11 @@ public class Motorista extends Pessoa{
 		}
 		return null;
 	}
+	
+	public String toString() {
+		String retorno = ("Nome: " + getNomeString() + "\nNome social: " + getNomeSocialString() + "\nCPF: " + getCpfString() + "\nCNH: " + getCnhString() + "\nEndereco: " + getEnderecoString() + "\nData de nascimento: " + getNascimentoString());
+		return retorno;
+	}
 
 	public Motorista(String cpfString, String nomeString, String nomeSocialString, String enderecoString, String nascimentoString, String cnhString) {
 		super(cpfString, nomeString, nomeSocialString);

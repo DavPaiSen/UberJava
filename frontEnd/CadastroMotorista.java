@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Motorista;
+import backEnd.Pessoa;
+
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -19,12 +23,12 @@ public class CadastroMotorista extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_5;
-	private JTextField textField_6;
-	private JTextField textField_7;
+	private JTextField txtNome;
+	private JTextField txtCpf;
+	private JTextField txtNomeSocial;
+	private JTextField txtDataDeNascimento;
+	private JTextField txtEndereco;
+	private JTextField txtCnh;
 
 	/**
 	 * Launch the application.
@@ -59,9 +63,9 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblNome = new JLabel("Nome:");
 		splitPane.setLeftComponent(lblNome);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		splitPane.setRightComponent(textField);
+		txtNome = new JTextField();
+		txtNome.setColumns(10);
+		splitPane.setRightComponent(txtNome);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		contentPane.add(splitPane_1);
@@ -69,9 +73,9 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblCpf = new JLabel("CPF:");
 		splitPane_1.setLeftComponent(lblCpf);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		splitPane_1.setRightComponent(textField_1);
+		txtCpf = new JTextField();
+		txtCpf.setColumns(10);
+		splitPane_1.setRightComponent(txtCpf);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		contentPane.add(splitPane_2);
@@ -79,9 +83,9 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblNewLabel = new JLabel("Nome social:");
 		splitPane_2.setLeftComponent(lblNewLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		splitPane_2.setRightComponent(textField_2);
+		txtNomeSocial = new JTextField();
+		txtNomeSocial.setColumns(10);
+		splitPane_2.setRightComponent(txtNomeSocial);
 		
 		JSplitPane splitPane_5 = new JSplitPane();
 		contentPane.add(splitPane_5);
@@ -89,9 +93,9 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblDataDeNascimento = new JLabel("Data de nascimento:");
 		splitPane_5.setLeftComponent(lblDataDeNascimento);
 		
-		textField_5 = new JTextField();
-		textField_5.setColumns(10);
-		splitPane_5.setRightComponent(textField_5);
+		txtDataDeNascimento = new JTextField();
+		txtDataDeNascimento.setColumns(10);
+		splitPane_5.setRightComponent(txtDataDeNascimento);
 		
 		JSplitPane splitPane_9 = new JSplitPane();
 		contentPane.add(splitPane_9);
@@ -99,9 +103,9 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblEndereco = new JLabel("Endereco:");
 		splitPane_9.setLeftComponent(lblEndereco);
 		
-		textField_6 = new JTextField();
-		splitPane_9.setRightComponent(textField_6);
-		textField_6.setColumns(10);
+		txtEndereco = new JTextField();
+		splitPane_9.setRightComponent(txtEndereco);
+		txtEndereco.setColumns(10);
 		
 		JSplitPane splitPane_10 = new JSplitPane();
 		contentPane.add(splitPane_10);
@@ -109,14 +113,27 @@ public class CadastroMotorista extends JFrame {
 		JLabel lblCnh = new JLabel("CNH:");
 		splitPane_10.setLeftComponent(lblCnh);
 		
-		textField_7 = new JTextField();
-		splitPane_10.setRightComponent(textField_7);
-		textField_7.setColumns(10);
+		txtCnh = new JTextField();
+		splitPane_10.setRightComponent(txtCnh);
+		txtCnh.setColumns(10);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
 		btnCadastrar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				String nome = txtNome.getText();
+				String nomeSocial = txtNomeSocial.getText();
+				String cpf = txtCpf.getText();
+				String cnh = txtCnh.getText();
+				String dataNascimento = txtDataDeNascimento.getText();
 				
+				
+				if (Pessoa.cpfValido(cpf)) {
+					Motorista motorista = new Motorista(cpf, nome, nomeSocial, cpf, dataNascimento, cnh);
+					backEnd.Principal.adicionarMotorista(motorista);
+					//mudar de janela
+				} else {
+					setTitle("CPF invalido, tentar novamente!");
+				}
 			}
 		});
 		contentPane.add(btnCadastrar);

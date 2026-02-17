@@ -21,6 +21,29 @@ public class Usuario extends Pessoa{
 	private float desconto; //nao fala como que a porcentagem de desconto e definida?????
 	private static int viagensParaVip;
 	
+	public String toString() {
+		String retorno = ("Nome: " + getNomeString() + "\nCpf: " + getCpfString() + "\nNome social: " + getNomeSocialString() + "\nData de nascimento: " + getDataNascimentoString() + "\nNumero de celular: " + getNroCelularString() + "\nEmail: " + getEmailString() + "\nSexo: ");
+		if (sexo == 0) {
+			retorno = retorno.concat("maculino");
+		} else if (sexo == 1) {
+			retorno = retorno.concat("feminino");
+		} else {
+			retorno = retorno.concat("outro");
+		}
+		retorno = retorno.concat("\nPagamento preferido: ");
+		
+		if (pagamento == 0) {
+			retorno = retorno.concat("cartao de credito");
+		} else if (pagamento == 1) {
+			retorno = retorno.concat("cartao de debito");
+		} else if (pagamento == 2) {
+			retorno = retorno.concat("pix");
+		} else {
+			retorno = retorno.concat("dinheiro");
+		}
+		return retorno;
+	}
+	
 	
 	public static int getViagensParaVip() {
 		return viagensParaVip;

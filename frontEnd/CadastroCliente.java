@@ -5,6 +5,10 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Pessoa;
+import backEnd.Usuario;
+
 import java.awt.FlowLayout;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
@@ -13,18 +17,21 @@ import javax.swing.JSlider;
 import javax.swing.JScrollPane;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
+import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class CadastroCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
-	private JTextField textField_2;
-	private JTextField textField_3;
-	private JTextField textField_4;
-	private JTextField textField_5;
+	private JTextField textNome;
+	private JTextField textCpf;
+	private JTextField textNomeSocial;
+	private JTextField textNroCelular;
+	private JTextField textEmail;
+	private JTextField textNascimento;
 
 	/**
 	 * Launch the application.
@@ -60,9 +67,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblNome = new JLabel("Nome:");
 		splitPane.setLeftComponent(lblNome);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		splitPane.setRightComponent(textField);
+		textNome = new JTextField();
+		textNome.setColumns(10);
+		splitPane.setRightComponent(textNome);
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		contentPane.add(splitPane_1);
@@ -70,9 +77,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblCpf = new JLabel("CPF:");
 		splitPane_1.setLeftComponent(lblCpf);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		splitPane_1.setRightComponent(textField_1);
+		textCpf = new JTextField();
+		textCpf.setColumns(10);
+		splitPane_1.setRightComponent(textCpf);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
 		contentPane.add(splitPane_2);
@@ -80,9 +87,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblNewLabel = new JLabel("Nome social:");
 		splitPane_2.setLeftComponent(lblNewLabel);
 		
-		textField_2 = new JTextField();
-		textField_2.setColumns(10);
-		splitPane_2.setRightComponent(textField_2);
+		textNomeSocial = new JTextField();
+		textNomeSocial.setColumns(10);
+		splitPane_2.setRightComponent(textNomeSocial);
 		
 		JSplitPane splitPane_3 = new JSplitPane();
 		contentPane.add(splitPane_3);
@@ -90,9 +97,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblNewLabel_1 = new JLabel("Nro de celular:");
 		splitPane_3.setLeftComponent(lblNewLabel_1);
 		
-		textField_3 = new JTextField();
-		textField_3.setColumns(10);
-		splitPane_3.setRightComponent(textField_3);
+		textNroCelular = new JTextField();
+		textNroCelular.setColumns(10);
+		splitPane_3.setRightComponent(textNroCelular);
 		
 		JSplitPane splitPane_4 = new JSplitPane();
 		contentPane.add(splitPane_4);
@@ -100,9 +107,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblEmail = new JLabel("Email:");
 		splitPane_4.setLeftComponent(lblEmail);
 		
-		textField_4 = new JTextField();
-		splitPane_4.setRightComponent(textField_4);
-		textField_4.setColumns(10);
+		textEmail = new JTextField();
+		splitPane_4.setRightComponent(textEmail);
+		textEmail.setColumns(10);
 		
 		JSplitPane splitPane_5 = new JSplitPane();
 		contentPane.add(splitPane_5);
@@ -110,9 +117,9 @@ public class CadastroCliente extends JFrame {
 		JLabel lblDataDeNascimento = new JLabel("Data de nascimento:");
 		splitPane_5.setLeftComponent(lblDataDeNascimento);
 		
-		textField_5 = new JTextField();
-		splitPane_5.setRightComponent(textField_5);
-		textField_5.setColumns(10);
+		textNascimento = new JTextField();
+		splitPane_5.setRightComponent(textNascimento);
+		textNascimento.setColumns(10);
 		
 		JSplitPane splitPane_6 = new JSplitPane();
 		splitPane_6.setOrientation(JSplitPane.VERTICAL_SPLIT);
@@ -166,6 +173,60 @@ public class CadastroCliente extends JFrame {
 		splitPane_12.setRightComponent(chckbxDinheiro);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		
+		//ButtonGroup e para que nao tenha mais de uma opcao selecionada no mesmo grupo (forma de pagamento e sexo)
+		
+		ButtonGroup pagamentoButtonGroup = new ButtonGroup();
+		pagamentoButtonGroup.add(chckbxDinheiro);
+		pagamentoButtonGroup.add(chckbxPix);
+		pagamentoButtonGroup.add(chckbxCartaoDeCredito);
+		pagamentoButtonGroup.add(chckbxCartaoDeDebito);
+		
+		ButtonGroup sexoButtonGroup = new ButtonGroup();
+		sexoButtonGroup.add(chckbxOutro);
+		sexoButtonGroup.add(chckbxMasculino);
+		sexoButtonGroup.add(chckbxFeminino);
+		
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String nroCelular = textNroCelular.getText();
+				String cpf = textCpf.getText();
+				String nome = textNome.getText();
+				String nomeSocial = textNomeSocial.getText();
+				String email = textEmail.getText();
+				String nascimento = textNascimento.getText();
+				
+				int pagamento = -1;
+				if (chckbxCartaoDeCredito.isSelected()) {
+					pagamento = 0;
+				} else if (chckbxCartaoDeDebito.isSelected()) {
+					pagamento = 1;
+				} else if (chckbxPix.isSelected()) {
+					pagamento = 2;
+				} else if (chckbxPix.isSelected()) {
+					pagamento = 3;
+				}
+				
+				int sexo = -1;
+				if (chckbxMasculino.isSelected()) {
+					sexo = 0;
+				} else if (chckbxFeminino.isSelected()) {
+					sexo = 1;
+				} else if (chckbxOutro.isSelected()) {
+					sexo = 2;
+				}
+				if (sexo != -1 && pagamento != -1 && Pessoa.cpfValido(cpf)) {
+					Usuario usuario = new Usuario(cpf, nome, nomeSocial, nroCelular, email, nascimento, sexo, pagamento);
+					backEnd.Principal.adicionaUsuario(usuario);
+				} else if (sexo == -1){
+					setTitle("É preciso selecionar algum sexo!");
+				} else if (pagamento == -1) {
+					setTitle("É preciso selecionar alguma forma de pagameto!");
+				} else {
+					setTitle("Cpf invalido!!");
+				}
+			}
+		});
 		contentPane.add(btnCadastrar);
 
 	}
