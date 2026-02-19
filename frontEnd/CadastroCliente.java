@@ -203,7 +203,7 @@ public class CadastroCliente extends JFrame {
 					pagamento = 1;
 				} else if (chckbxPix.isSelected()) {
 					pagamento = 2;
-				} else if (chckbxPix.isSelected()) {
+				} else if (chckbxDinheiro.isSelected()) {
 					pagamento = 3;
 				}
 				
@@ -215,9 +215,21 @@ public class CadastroCliente extends JFrame {
 				} else if (chckbxOutro.isSelected()) {
 					sexo = 2;
 				}
+				
+				
 				if (sexo != -1 && pagamento != -1 && Pessoa.cpfValido(cpf)) {
-					Usuario usuario = new Usuario(cpf, nome, nomeSocial, nroCelular, email, nascimento, sexo, pagamento);
-					backEnd.Principal.adicionaUsuario(usuario);
+					try {
+						Usuario usuario = new Usuario(cpf, nome, nomeSocial, nroCelular, email, nascimento, sexo, pagamento);
+						backEnd.Principal.adicionaUsuario(usuario);
+						PedirCorrida pedirCorrida = new PedirCorrida();
+						pedirCorrida.setVisible(true);
+						dispose();
+						
+					} catch (Exception e1) {
+						setTitle("Erro ao abrir o arquivo!");
+						e1.printStackTrace();
+					}
+					
 				} else if (sexo == -1){
 					setTitle("É preciso selecionar algum sexo!");
 				} else if (pagamento == -1) {
@@ -226,9 +238,7 @@ public class CadastroCliente extends JFrame {
 					setTitle("Cpf invalido!!");
 				}
 				
-				PedirCorrida pedirCorrida = new PedirCorrida();
-				pedirCorrida.setVisible(true);
-				dispose();
+				
 			}
 		});
 		

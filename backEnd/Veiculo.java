@@ -1,6 +1,8 @@
 package backEnd;
 
-public abstract class Veiculo { //classe abstrata
+import java.io.Serializable;
+
+public abstract class Veiculo implements Serializable{ //classe abstrata
 	protected String placaString;
 	protected String chassiString;
 	protected String corString;

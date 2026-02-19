@@ -1,7 +1,9 @@
 
 package backEnd;
 
-public class Pessoa {
+import java.io.Serializable;
+
+public class Pessoa implements Serializable{
 	protected String cpfString; //tratar cpf como id
 	protected String nomeString;
 	protected String nomeSocialString;

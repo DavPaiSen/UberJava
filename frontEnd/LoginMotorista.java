@@ -104,7 +104,8 @@ public class LoginMotorista extends JFrame {
 				String nome = txtNome.getText();
 				String cnh = txtCnh.getText(); 
 				if (Principal.achaMotorista(nome, cnh)) {
-					//TODO pagina do motorista
+					EscolherVeiculo escolherVeiculo = new EscolherVeiculo();
+					escolherVeiculo.setVisible(true);
 					dispose();
 				} else {
 					setTitle("Nao foi possivel encontrar um motorista com essas informacoes de login!");

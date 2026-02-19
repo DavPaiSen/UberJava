@@ -13,6 +13,7 @@ import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.SwingConstants;
 import java.awt.event.ActionListener;
+import java.security.Principal;
 import java.awt.event.ActionEvent;
 import java.awt.GridLayout;
 import java.awt.FlowLayout;
@@ -65,11 +66,25 @@ public class EscolherVeiculo extends JFrame {
 		textPlaca.setColumns(10);
 		
 		JButton btnBuscarVeiculo = new JButton("Buscar veiculo");
+		btnBuscarVeiculo.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String placa = textPlaca.getText();
+				if (!backEnd.Principal.getLogadoMotorista().ativarVeiculo(placa)) {
+					setTitle("Veiculo nao encontrado!");
+				} else {
+					System.out.println("Veiculo encontrado!");
+					//TODO tela de achar corridas
+				}
+			}
+		});
 		panel.add(btnBuscarVeiculo);
 		
 		JButton btnCadastrarVeiculo = new JButton("Cadastrar veiculo");
 		btnCadastrarVeiculo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				CadastrarVeiculo cadastrarVeiculo = new CadastrarVeiculo();
+				cadastrarVeiculo.setVisible(true);
+				dispose();
 			}
 		});
 		
@@ -83,6 +98,10 @@ public class EscolherVeiculo extends JFrame {
 		JButton btnNewButton = new JButton("Cancelar");
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				BemVindo bemVindo = new BemVindo();
+				bemVindo.setVisible(true);
+				dispose();
+				
 			}
 		});
 		panel.add(btnNewButton);

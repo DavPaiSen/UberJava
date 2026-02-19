@@ -64,6 +64,8 @@ public class BemVindo extends JFrame { //ta feio mas ta funcionando entao ta bom
 		panel.add(splitPane);
 		btnCliente.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				backEnd.Principal.setLogadoUsuario(null);
+				backEnd.Principal.setLogadoMotorista(null);
 				backEnd.Principal.setCliente(true);
 				CriarOuLogar criarOuLogar = new CriarOuLogar();
 				criarOuLogar.setVisible(true);
@@ -74,6 +76,8 @@ public class BemVindo extends JFrame { //ta feio mas ta funcionando entao ta bom
 		splitPane.setLeftComponent(btnCliente);
 		btnMotorista.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
+				backEnd.Principal.setLogadoUsuario(null);
+				backEnd.Principal.setLogadoMotorista(null);
 				backEnd.Principal.setCliente(false);
 				CriarOuLogar criarOuLogar = new CriarOuLogar();
 				criarOuLogar.setVisible(true);

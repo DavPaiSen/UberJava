@@ -1,11 +1,14 @@
 package backEnd;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class Principal {
-	private static ArrayList<Motorista> motoristas = new ArrayList<Motorista>(); //nao inclui leitura de motoristas e usuarios ja salvos, sem leitura de arquivos!!
-	private static ArrayList<Usuario> usuarios = new ArrayList<Usuario>();
-	private static ArrayList<Corrida> corridas = new ArrayList<Corrida>(); //id da corrida e a sua posicao no arraylist
+	private static ArrayList<Motorista> motoristas; //nao inclui leitura de motoristas e usuarios ja salvos, sem leitura de arquivos!!
+	private static ArrayList<Usuario> usuarios;
+	private static ArrayList<Corrida> corridas; //id da corrida e a sua posicao no arraylist
 	private static boolean ehCliente;
 	private static Motorista logadoMotorista = null;
 	private static Usuario logadoUsuario = null;
@@ -30,8 +33,10 @@ public class Principal {
 		return retorno;
 	}
 	
-	public static void adicionaUsuario(Usuario adicionar) {
+	public static void adicionaUsuario(Usuario adicionar) throws IOException {
 		usuarios.add(adicionar);
+		Persistencia.salvar(usuarios, "usuarios.dat");
+		System.out.println("O arquivo foi salvo em: " + new java.io.File("usuarios.dat").getAbsolutePath());
 		//System.out.println(adicionar.toString());
 	}
 	
@@ -40,8 +45,9 @@ public class Principal {
 		//tratar as exceções quando tiver a aula
 	}
 	
-	public static void adicionarMotorista(Motorista adicionar) {
+	public static void adicionarMotorista(Motorista adicionar) throws IOException {
 		motoristas.add(adicionar);
+		Persistencia.salvar(motoristas, "motoristas.dat");
 		//System.out.println(adicionar.toString());
 	}
 	
@@ -66,11 +72,49 @@ public class Principal {
 		Usuario procurando = null;
 		for (int i = 0; i < usuarios.size(); i++) {
 			procurando = usuarios.get(i);
-			if (procurando.getCpfString().equals(cpf) && procurando.getEmailString().equals(email)) {
+			if (procurando.getCpfString().trim().equals(cpf.trim()) && procurando.getEmailString().trim().equals(email.trim())) {
 				logadoUsuario = procurando;
 				return true;
 			}
 		}
 		return false;
+	}
+	
+	public static Motorista getLogadoMotorista() {
+		return logadoMotorista;
+	}
+
+	public static Usuario getLogadoUsuario() {
+		return logadoUsuario;
+	}
+
+	public static void setLogadoMotorista(Motorista logadoMotorista) {
+		Principal.logadoMotorista = logadoMotorista;
+	}
+
+	public static void setLogadoUsuario(Usuario logadoUsuario) {
+		Principal.logadoUsuario = logadoUsuario;
+	}
+
+	public static void inicio() throws ClassNotFoundException, IOException {
+		File motoristasFile = new File("motoristas.dat");
+		File usuariosFile = new File("usuarios.dat");
+		File corridasFile = new File("corridas.dat");
+		if (motoristasFile.exists()) {
+			motoristas = (ArrayList<Motorista>) Persistencia.carregar("motoristas.dat");
+		} else {
+			motoristas = new ArrayList<Motorista>();
+		}
+		if (usuariosFile.exists()) {
+			usuarios = (ArrayList<Usuario>) Persistencia.carregar("usuarios.dat");
+		} else {
+			usuarios = new ArrayList<Usuario>();
+		}
+		if (corridasFile.exists()) {
+			corridas = (ArrayList<Corrida>) Persistencia.carregar("corridas.dat");
+			
+		} else {
+			corridas = new ArrayList<Corrida>();
+		}
 	}
 }

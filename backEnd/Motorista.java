@@ -1,8 +1,9 @@
 package backEnd;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Motorista extends Pessoa{
+public class Motorista extends Pessoa implements Serializable{
 	private String enderecoString;
 	private String nascimentoString;
 	private String cnhString;

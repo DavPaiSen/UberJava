@@ -1,10 +1,13 @@
 package backEnd;
 
+import java.io.IOException;
+
 import frontEnd.BemVindo;
 
 public abstract class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ClassNotFoundException, IOException {
+		backEnd.Principal.inicio();
 		Usuario.setViagensParaVip(10);
 		UberX.setValorKm(1f); //valor por km e taxa minima do prioridade sao o dobro do UberX
 		UberX.setTaxaMinima(5f);

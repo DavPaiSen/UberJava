@@ -1,6 +1,8 @@
 package backEnd;
 
-public class Corrida {
+import java.io.Serializable;
+
+public class Corrida implements Serializable{
 	private Motorista motorista;
 	private Usuario usuario;
 	private float distancia;

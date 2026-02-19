@@ -1,6 +1,8 @@
 package backEnd;
 
-public class Usuario extends Pessoa{
+import java.io.Serializable;
+
+public class Usuario extends Pessoa implements Serializable{
 	private String nroCelularString;
 	private String emailString;
 	private String dataNascimentoString;

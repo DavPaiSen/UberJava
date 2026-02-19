@@ -16,6 +16,7 @@ import javax.swing.SwingConstants;
 import javax.swing.JCheckBox;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.security.Principal;
 import java.awt.event.ActionEvent;
 
@@ -128,8 +129,13 @@ public class CadastroMotorista extends JFrame {
 				
 				
 				if (Pessoa.cpfValido(cpf)) {
-					Motorista motorista = new Motorista(cpf, nome, nomeSocial, cpf, dataNascimento, cnh);
-					backEnd.Principal.adicionarMotorista(motorista);
+					try {
+						Motorista motorista = new Motorista(cpf, nome, nomeSocial, cpf, dataNascimento, cnh);
+						backEnd.Principal.adicionarMotorista(motorista);
+					} catch (IOException e1) {
+						System.out.println("Erro ao abrir o arquivo!");
+						e1.printStackTrace();
+					}
 					//mudar de janela
 				} else {
 					setTitle("CPF invalido, tentar novamente!");
