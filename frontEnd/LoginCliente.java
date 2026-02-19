@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Principal;
+
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
@@ -13,13 +16,15 @@ import javax.swing.JTextField;
 import javax.swing.BoxLayout;
 import java.awt.GridLayout;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class LoginCliente extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField txtEmail;
+	private JTextField txtCpf;
 
 	/**
 	 * Launch the application.
@@ -62,9 +67,9 @@ public class LoginCliente extends JFrame {
 		JLabel lblEmail = new JLabel("Email:");
 		splitPane.setLeftComponent(lblEmail);
 		
-		textField = new JTextField();
-		splitPane.setRightComponent(textField);
-		textField.setColumns(10);
+		txtEmail = new JTextField();
+		splitPane.setRightComponent(txtEmail);
+		txtEmail.setColumns(10);
 		
 		JPanel panel_1 = new JPanel();
 		panel.add(panel_1);
@@ -75,10 +80,10 @@ public class LoginCliente extends JFrame {
 		JLabel lblCpf = new JLabel("CPF:");
 		splitPane_1.setLeftComponent(lblCpf);
 		
-		textField_1 = new JTextField();
-		textField_1.setToolTipText("Inserir apenas numeros");
-		splitPane_1.setRightComponent(textField_1);
-		textField_1.setColumns(10);
+		txtCpf = new JTextField();
+		txtCpf.setToolTipText("Inserir apenas numeros");
+		splitPane_1.setRightComponent(txtCpf);
+		txtCpf.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("");
 		panel.add(lblNewLabel);
@@ -87,9 +92,29 @@ public class LoginCliente extends JFrame {
 		panel.add(splitPane_2);
 		
 		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CriarOuLogar criarOuLogar = new CriarOuLogar();
+				criarOuLogar.setVisible(true);
+				dispose();
+			}
+		});
 		splitPane_2.setLeftComponent(btnCancelar);
 		
 		JButton btnEnviar = new JButton("Enviar");
+		btnEnviar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String email = txtEmail.getText();
+				String cpf = txtCpf.getText();
+				if (Principal.achaUsuario(cpf, email)) {
+					PedirCorrida pedirCorrida = new PedirCorrida();
+					pedirCorrida.setVisible(true);
+					dispose();
+				} else {
+					setTitle("Nao foi possivel encontrar um usuario com essas informacoes de login!");
+				}
+			}
+		});
 		splitPane_2.setRightComponent(btnEnviar);
 		
 

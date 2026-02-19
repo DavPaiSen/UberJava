@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Principal;
+
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
@@ -12,8 +15,11 @@ import java.awt.BorderLayout;
 import javax.swing.JLabel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PedirCorrida extends JFrame {
 
@@ -60,24 +66,28 @@ public class PedirCorrida extends JFrame {
 		splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel.add(splitPane);
 		
-		JButton btnUberx = new JButton("UberX");
-		splitPane.setLeftComponent(btnUberx);
+		JCheckBox chckbxUberx = new JCheckBox("UberX");
+		chckbxUberx.setActionCommand("0");
+		splitPane.setLeftComponent(chckbxUberx);
 		
-		JButton btnUbercomfort = new JButton("UberComfort");
-		splitPane.setRightComponent(btnUbercomfort);
+		JCheckBox chckbxUbercomfort = new JCheckBox("UberComfort");
+		splitPane.setRightComponent(chckbxUbercomfort);
+		chckbxUbercomfort.setActionCommand("1");
 		
 		JSplitPane splitPane_1 = new JSplitPane();
 		splitPane_1.setOrientation(JSplitPane.VERTICAL_SPLIT);
 		panel.add(splitPane_1);
 		
-		JButton btnUberblack = new JButton("UberBlack");
-		splitPane_1.setLeftComponent(btnUberblack);
+		JCheckBox chckbxUberprioridade = new JCheckBox("UberPrioridade");
+		chckbxUberprioridade.setActionCommand("2");
+		splitPane_1.setRightComponent(chckbxUberprioridade);
 		
-		JButton btnUberprioridade = new JButton("UberPrioridade");
-		splitPane_1.setRightComponent(btnUberprioridade);
+		JCheckBox chckbxUberblack = new JCheckBox("UberBlack");
+		chckbxUberblack.setActionCommand("3");
+		splitPane_1.setLeftComponent(chckbxUberblack);
 		
 		JSplitPane splitPane_2 = new JSplitPane();
-		contentPane.add(splitPane_2, BorderLayout.SOUTH);
+		panel.add(splitPane_2);
 		
 		JLabel lblInsiraADistncia = new JLabel("Insira a distância até o destino:");
 		splitPane_2.setLeftComponent(lblInsiraADistncia);
@@ -86,6 +96,29 @@ public class PedirCorrida extends JFrame {
 		textField.setToolTipText("Apenas numeros, por favor");
 		splitPane_2.setRightComponent(textField);
 		textField.setColumns(10);
+		
+		JSplitPane splitPane_3 = new JSplitPane();
+		panel.add(splitPane_3);
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		splitPane_3.setLeftComponent(btnCancelar);
+		
+		
+		
+		ButtonGroup categoria = new ButtonGroup();
+		categoria.add(chckbxUberblack);
+		categoria.add(chckbxUberx);
+		categoria.add(chckbxUberprioridade);
+		categoria.add(chckbxUbercomfort);
+		
+		JButton btnPedirCorrida = new JButton("Pedir corrida");
+		btnPedirCorrida.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				
+				
+			}
+		});
+		splitPane_3.setRightComponent(btnPedirCorrida);
 
 	}
 

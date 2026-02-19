@@ -136,6 +136,16 @@ public class CadastroMotorista extends JFrame {
 				}
 			}
 		});
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				CriarOuLogar criarOuLogar = new CriarOuLogar();
+				criarOuLogar.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnCancelar);
 		contentPane.add(btnCadastrar);
 
 	}
