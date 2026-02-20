@@ -1,15 +1,15 @@
 package backEnd;
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
 
 public class Corrida implements Serializable{
 	private Motorista motorista;
 	private Usuario usuario;
 	private float distancia;
-	private int horaSolicitacao;
-	private int data;
-	private int horaInicio;//hora que o motorista chegou a origem
-	private int horaDestino;//hora que chegaram ao destino
+	private LocalDateTime horaSolicitacao;
+	private LocalDateTime horaInicio;//hora que o motorista chegou a origem
+	private LocalDateTime horaDestino;//hora que chegaram ao destino
 	private int cancelada;
 	private boolean encerrada; //colocar um atributo boolean pago???? se for pagar no dinheiro para o motorista e importante ter
 	/**
@@ -50,19 +50,15 @@ public class Corrida implements Serializable{
 		return distancia;
 	}
 
-	public int getHoraSolicitacao() {
+	public LocalDateTime getHoraSolicitacao() {
 		return horaSolicitacao;
 	}
-
-	public int getData() {
-		return data;
-	}
-
-	public int getHoraInicio() {
+	
+	public LocalDateTime getHoraInicio() {
 		return horaInicio;
 	}
 
-	public int getHoraDestino() {
+	public LocalDateTime getHoraDestino() {
 		return horaDestino;
 	}
 
@@ -97,12 +93,11 @@ public class Corrida implements Serializable{
 		veiculo.setStatus(0);
 	}
 	
-	public Corrida(Motorista motorista, Usuario usuario, float distancia, int horaSolicitacao, int data) {
+	public Corrida(Motorista motorista, Usuario usuario, float distancia, LocalDateTime horaSolicitacao) {
 		this.motorista = motorista;
 		this.usuario = usuario;
 		this.distancia = distancia;
 		this.horaSolicitacao = horaSolicitacao;
-		this.data = data;
 		cancelada = 0;
 		encerrada = false;
 		veiculo.setStatus(2); //nao disponivel

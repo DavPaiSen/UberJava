@@ -96,6 +96,17 @@ public class Principal {
 	public static void setLogadoUsuario(Usuario logadoUsuario) {
 		Principal.logadoUsuario = logadoUsuario;
 	}
+	
+	public static Motorista procuraMotorista(Class<?> categoria) {
+		Motorista atual = null;
+		for (int i = 0; i < motoristas.size(); i++) {
+			atual = motoristas.get(i);
+			if (categoria.isInstance(atual)) {
+				return atual;
+			}
+		}
+		return null;
+	}
 
 	public static void inicio() throws ClassNotFoundException, IOException {
 		File motoristasFile = new File("motoristas.dat");

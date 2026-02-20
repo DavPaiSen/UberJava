@@ -6,7 +6,10 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import backEnd.Corrida;
+import backEnd.Motorista;
 import backEnd.Principal;
+import backEnd.UberX;
 
 import java.awt.FlowLayout;
 import javax.swing.JCheckBox;
@@ -19,13 +22,15 @@ import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
 import javax.swing.JTextField;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.awt.event.ActionEvent;
 
 public class PedirCorrida extends JFrame {
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
-	private JTextField textField;
+	private JTextField textDistancia;
 
 	/**
 	 * Launch the application.
@@ -92,16 +97,22 @@ public class PedirCorrida extends JFrame {
 		JLabel lblInsiraADistncia = new JLabel("Insira a distância até o destino:");
 		splitPane_2.setLeftComponent(lblInsiraADistncia);
 		
-		textField = new JTextField();
-		textField.setToolTipText("Apenas numeros, por favor");
-		splitPane_2.setRightComponent(textField);
-		textField.setColumns(10);
+		textDistancia = new JTextField();
+		textDistancia.setToolTipText("Apenas numeros, por favor");
+		splitPane_2.setRightComponent(textDistancia);
+		textDistancia.setColumns(10);
 		
 		JSplitPane splitPane_3 = new JSplitPane();
 		panel.add(splitPane_3);
 		
-		JButton btnCancelar = new JButton("Cancelar");
-		splitPane_3.setLeftComponent(btnCancelar);
+		JButton btnSair = new JButton("Sair");
+		btnSair.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				
+			}
+		});
+		splitPane_3.setLeftComponent(btnSair);
 		
 		
 		
@@ -114,8 +125,22 @@ public class PedirCorrida extends JFrame {
 		JButton btnPedirCorrida = new JButton("Pedir corrida");
 		btnPedirCorrida.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				float distancia = 0f;
+				try {
+					distancia = Float.parseFloat(textDistancia.getText());
+				} catch (NumberFormatException e1) {
+					setTitle("Inserir apenas numeros na distancia!");
+					return;
+				}
+				if (chckbxUberx.isSelected()) {
+					Motorista disponivel = Principal.procuraMotorista(UberX.class);
+					if (disponivel == null) {
+						setTitle("Nao foi possivel encontrar um motorista dessa categoria!");
+					} else {
+						Corrida pedido = new Corrida(Principal.procuraMotorista(UberX.class), Principal.getLogadoUsuario(), distancia, LocalDateTime.now());
+						System.out.println("Corrida criada!");
+					}
+				}
 			}
 		});
 		splitPane_3.setRightComponent(btnPedirCorrida);
