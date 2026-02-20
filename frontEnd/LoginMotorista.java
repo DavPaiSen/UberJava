@@ -103,7 +103,7 @@ public class LoginMotorista extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				String nome = txtNome.getText();
 				String cnh = txtCnh.getText(); 
-				if (Principal.achaMotorista(nome, cnh)) {
+				if (Principal.achaMotorista(nome, cnh)) { 
 					EscolherVeiculo escolherVeiculo = new EscolherVeiculo();
 					escolherVeiculo.setVisible(true);
 					dispose();

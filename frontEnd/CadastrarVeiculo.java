@@ -5,6 +5,14 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Persistencia;
+import backEnd.Principal;
+import backEnd.UberBlack;
+import backEnd.UberComfort;
+import backEnd.UberPrioridade;
+import backEnd.UberX;
+
 import java.awt.BorderLayout;
 import javax.swing.JSplitPane;
 import java.awt.FlowLayout;
@@ -12,6 +20,7 @@ import javax.swing.JCheckBox;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -25,7 +34,7 @@ public class CadastrarVeiculo extends JFrame {
 	private JTextField textPlaca;
 	private JTextField textCor;
 	private JTextField textPassageiros;
-	private JTextField textField;
+	private JTextField textCapacidadeMalas;
 
 	/**
 	 * Launch the application.
@@ -196,15 +205,82 @@ public class CadastrarVeiculo extends JFrame {
 		JLabel lblCapacidadeDeMalas = new JLabel("Capacidade de malas");
 		splitPane_9.setLeftComponent(lblCapacidadeDeMalas);
 		
-		textField = new JTextField();
-		textField.setToolTipText("inserir apenas numeros!");
-		splitPane_9.setRightComponent(textField);
-		textField.setColumns(10);
+		textCapacidadeMalas = new JTextField();
+		textCapacidadeMalas.setToolTipText("inserir apenas numeros!");
+		splitPane_9.setRightComponent(textCapacidadeMalas);
+		textCapacidadeMalas.setColumns(10);
 		
 		JLabel label_4 = new JLabel("                                                                                                                                            ");
 		panel.add(label_4);
 		
 		JButton btnCadastrar = new JButton("Cadastrar");
+		btnCadastrar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				String placa = textPlaca.getText();
+				String cor = textCor.getText();
+				String chassi = textNroChassi.getText();
+				int capacidadePassageiros;
+				try {
+					capacidadePassageiros = Integer.parseInt(textPassageiros.getText());
+				} catch (NumberFormatException e1) {
+					setTitle("Colocar apenas numeros na capacidade de passageiros!");
+					return;
+				}
+				
+				if (chckbxUberx.isSelected()) {
+					boolean arCondicionado = chckbxArCondicionado.isSelected();
+					boolean confortoBasico = chckbxComfortoBasico.isSelected();
+					UberX adicionar = new UberX(placa, chassi, cor, capacidadePassageiros, arCondicionado, confortoBasico);
+					try {
+						Principal.getLogadoMotorista().adicionarVeiculo(adicionar);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else if (chckbxUberblack.isSelected()) {
+					boolean interiorPremium = chckbxInteriorPremium.isSelected();
+					boolean rodaLigaLeve = chckbxRodasDeLiga.isSelected();
+					int capacidadeMalas;
+					try {
+						capacidadeMalas = Integer.parseInt(textCapacidadeMalas.getText());
+					} catch (NumberFormatException e1) {
+						setTitle("Colocar apenas numeros na capacidade de malas!");
+						return;
+					}
+					UberBlack adicionar = new UberBlack(placa, chassi, cor, capacidadePassageiros, capacidadeMalas, interiorPremium, rodaLigaLeve);
+					try {
+						Principal.getLogadoMotorista().adicionarVeiculo(adicionar);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else if (chckbxUbercomfort.isSelected()) {
+					boolean espacoExtra = chckbxEspacoExtra.isSelected();
+					boolean arDualZone = chckbxArCondicionadoDual.isSelected();
+					boolean bancoReclinavel = chckbxBancoReclinavel.isSelected();
+					UberComfort adicionar = new UberComfort(placa, chassi, cor, capacidadePassageiros, espacoExtra, arDualZone, bancoReclinavel);
+					try {
+						Principal.getLogadoMotorista().adicionarVeiculo(adicionar);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else if (chckbxUberprioridade.isSelected()) {
+					UberPrioridade adicionar = new UberPrioridade(placa, chassi, cor, capacidadePassageiros);
+					try {
+						Principal.getLogadoMotorista().adicionarVeiculo(adicionar);
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				} else {
+					setTitle("Por favor selecione alguma categoria!");
+				}
+				EscolherVeiculo escolherVeiculo = new EscolherVeiculo();
+				escolherVeiculo.setVisible(true);
+				dispose();
+			}
+		});
 		panel.add(btnCadastrar);
 		
 		JButton btnNewButton = new JButton("Voltar");

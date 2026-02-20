@@ -36,7 +36,7 @@ public class Principal {
 	public static void adicionaUsuario(Usuario adicionar) throws IOException {
 		usuarios.add(adicionar);
 		Persistencia.salvar(usuarios, "usuarios.dat");
-		System.out.println("O arquivo foi salvo em: " + new java.io.File("usuarios.dat").getAbsolutePath());
+		//System.out.println("O arquivo foi salvo em: " + new java.io.File("usuarios.dat").getAbsolutePath());
 		//System.out.println(adicionar.toString());
 	}
 	
@@ -62,6 +62,7 @@ public class Principal {
 			procurando = motoristas.get(i);
 			if (procurando.getCnhString().equals(cnh) && procurando.getNomeString().equals(nome)) {
 				logadoMotorista = procurando;
+				procurando.ativar();
 				return true;
 			}
 		}
@@ -116,5 +117,9 @@ public class Principal {
 		} else {
 			corridas = new ArrayList<Corrida>();
 		}
+	}
+	
+	public static void salvaMotoristas() throws IOException {
+		Persistencia.salvar(motoristas, "motoristas.dat");
 	}
 }

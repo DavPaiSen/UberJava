@@ -1,5 +1,6 @@
 package backEnd;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -23,8 +24,9 @@ public class Motorista extends Pessoa implements Serializable{
 		return saldo;
 	}
 
-	public void adicionarVeiculo(Veiculo adicionar) {
+	public void adicionarVeiculo(Veiculo adicionar) throws IOException {
 		veiculos.add(adicionar);
+		Principal.salvaMotoristas();
 	}
 	
 	public boolean removerVeiculo(Veiculo remover) {
