@@ -12,6 +12,24 @@ public class Principal {
 	private static boolean ehCliente;
 	private static Motorista logadoMotorista = null;
 	private static Usuario logadoUsuario = null;
+	private static Corrida corridaAtiva = null;
+	private static int categoria; //so por conveniencia
+
+	public static int getCategoria() {
+		return categoria;
+	}
+
+	public static void setCategoria(int categoria) {
+		Principal.categoria = categoria;
+	}
+
+	public static Corrida getCorridaAtiva() {
+		return corridaAtiva;
+	}
+
+	public static void setCorridaAtiva(Corrida corridaAtiva) {
+		Principal.corridaAtiva = corridaAtiva;
+	}
 
 	public static boolean isCliente() {
 		return ehCliente;
@@ -101,7 +119,18 @@ public class Principal {
 		Motorista atual = null;
 		for (int i = 0; i < motoristas.size(); i++) {
 			atual = motoristas.get(i);
-			if (categoria.isInstance(atual)) {
+			if (categoria.isInstance(atual.veiculoAtivo())) {
+				return atual;
+			}
+		}
+		return null;
+	}
+	
+	public static Corrida procuraCorrida(Class<?> categoria) {
+		Corrida atual = null;
+		for (int i = 0; i < corridas.size(); i++) {
+			atual = corridas.get(i);
+			if (categoria.isInstance(atual) && !atual.isEncerrada()) {
 				return atual;
 			}
 		}

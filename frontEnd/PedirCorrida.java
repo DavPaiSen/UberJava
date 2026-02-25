@@ -133,14 +133,22 @@ public class PedirCorrida extends JFrame {
 					return;
 				}
 				if (chckbxUberx.isSelected()) {
-					Motorista disponivel = Principal.procuraMotorista(UberX.class);
-					if (disponivel == null) {
-						setTitle("Nao foi possivel encontrar um motorista dessa categoria!");
-					} else {
-						Corrida pedido = new Corrida(Principal.procuraMotorista(UberX.class), Principal.getLogadoUsuario(), distancia, LocalDateTime.now());
-						System.out.println("Corrida criada!");
-					}
+					Principal.setCategoria(0);
+				} else if (chckbxUbercomfort.isSelected()) {
+					Principal.setCategoria(1);
+				} else if (chckbxUbercomfort.isSelected()) {
+					Principal.setCategoria(2);
+				} else if (chckbxUberprioridade.isSelected()) {
+					Principal.setCategoria(3);
+				} else {
+					setTitle("Por favor selecione uma categoria!");
+					break;
 				}
+				System.out.println("Cheguei!");
+				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia, LocalDateTime.now());
+				Principal.setCorridaAtiva(corrida);
+				ProcurandoCorrida procurandoCorrida = new ProcurandoCorrida();
+				dispose();
 			}
 		});
 		splitPane_3.setRightComponent(btnPedirCorrida);

@@ -73,7 +73,9 @@ public class EscolherVeiculo extends JFrame {
 					setTitle("Veiculo nao encontrado!");
 				} else {
 					System.out.println("Veiculo encontrado!");
-					//TODO tela de achar corridas
+					ProcurarCorridas procurarCorridas = new ProcurarCorridas();
+					procurarCorridas.setVisible(true);
+					dispose();
 				}
 			}
 		});
