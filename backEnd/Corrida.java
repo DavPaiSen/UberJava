@@ -18,8 +18,16 @@ public class Corrida implements Serializable{
 	 * 2 - cancelada pelo motorista
 	 */
 	private static float porcentagemMotorista;
-	private Veiculo veiculo = motorista.veiculoAtivo();
+	private Veiculo veiculo = null;
 	
+	
+	
+	public void adicionaMotorista(Motorista motorista) {
+		this.motorista = motorista;
+		veiculo = motorista.veiculoAtivo();
+		veiculo.setStatus(2); //nao disponivel
+	}
+
 	public void cancela(Pessoa quem) {
 		if (quem instanceof Usuario) {
 			cancelada = 1;
@@ -81,7 +89,11 @@ public class Corrida implements Serializable{
 		veiculo.setStatus(3);
 	}
 	
-	private void finalizada() {
+	public String getNomeMotorista() {
+		return motorista.getNomeSocialString();
+	}
+	
+	public void finalizada() {
 		Veiculo veiculo = motorista.veiculoAtivo();
 		if (cancelada == 1) { //se foi cancelada pelo usuario o motorista recebe uma porcentagem do valor total
 			motorista.pagar(veiculo.valor(distancia) * 0.5f); //50%, valor arbitrario
@@ -100,6 +112,5 @@ public class Corrida implements Serializable{
 		this.horaSolicitacao = horaSolicitacao;
 		cancelada = 0;
 		encerrada = false;
-		veiculo.setStatus(2); //nao disponivel
 	}
 }

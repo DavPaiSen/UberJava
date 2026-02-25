@@ -136,6 +136,10 @@ public class Principal {
 		}
 		return null;
 	}
+	
+	public static void finalizaCorrida() {
+		corridaAtiva.finalizada();
+	}
 
 	public static void inicio() throws ClassNotFoundException, IOException {
 		File motoristasFile = new File("motoristas.dat");

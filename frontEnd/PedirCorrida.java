@@ -12,6 +12,8 @@ import backEnd.Principal;
 import backEnd.UberX;
 
 import java.awt.FlowLayout;
+import java.awt.desktop.QuitEvent;
+
 import javax.swing.JCheckBox;
 import javax.swing.SwingConstants;
 import java.awt.BorderLayout;
@@ -142,12 +144,12 @@ public class PedirCorrida extends JFrame {
 					Principal.setCategoria(3);
 				} else {
 					setTitle("Por favor selecione uma categoria!");
-					break;
+					return;
 				}
-				System.out.println("Cheguei!");
 				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia, LocalDateTime.now());
 				Principal.setCorridaAtiva(corrida);
-				ProcurandoCorrida procurandoCorrida = new ProcurandoCorrida();
+				//TODO abrir janela de procurarCorrida!!!!!!!!
+				//ProcurandoCorrida procurandoCorrida = new ProcurandoCorrida();
 				dispose();
 			}
 		});
