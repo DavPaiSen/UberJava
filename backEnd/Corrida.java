@@ -105,11 +105,15 @@ public class Corrida implements Serializable{
 		veiculo.setStatus(0);
 	}
 	
-	public Corrida(Motorista motorista, Usuario usuario, float distancia, LocalDateTime horaSolicitacao) {
+	public void setHoraInicio(LocalDateTime horaInicio) {
+		this.horaInicio = horaInicio;
+	}
+
+	public Corrida(Motorista motorista, Usuario usuario, float distancia) {
 		this.motorista = motorista;
 		this.usuario = usuario;
 		this.distancia = distancia;
-		this.horaSolicitacao = horaSolicitacao;
+		horaSolicitacao = LocalDateTime.now();
 		cancelada = 0;
 		encerrada = false;
 	}

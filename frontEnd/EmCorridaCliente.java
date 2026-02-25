@@ -38,6 +38,7 @@ public class EmCorridaCliente extends JFrame {
 	 * Create the frame.
 	 */
 	public EmCorridaCliente() {
+		Principal.getCorridaAtiva().setHoraInicio(LocalDateTime.now());
 		setTitle("Em corrida");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
@@ -64,7 +65,7 @@ public class EmCorridaCliente extends JFrame {
 		float distancia = Principal.getCorridaAtiva().getDistancia();
 		float tempoEstimadoHoras = distancia / 40f; //assumindo uma media de 40km\h
 		float tempoRestanteHoras = tempoEstimadoHoras - duracao.toHours();
-		labelTempoRestante.setText(String.valueOf(tempoRestanteHoras * 60.0f));
+		labelTempoRestante.setText(String.valueOf(tempoRestanteHoras * 60.0f) + "minutos");
 		
 
 	}

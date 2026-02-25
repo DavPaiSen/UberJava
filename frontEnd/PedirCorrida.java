@@ -138,7 +138,7 @@ public class PedirCorrida extends JFrame {
 					Principal.setCategoria(0);
 				} else if (chckbxUbercomfort.isSelected()) {
 					Principal.setCategoria(1);
-				} else if (chckbxUbercomfort.isSelected()) {
+				} else if (chckbxUberblack.isSelected()) {
 					Principal.setCategoria(2);
 				} else if (chckbxUberprioridade.isSelected()) {
 					Principal.setCategoria(3);
@@ -146,8 +146,10 @@ public class PedirCorrida extends JFrame {
 					setTitle("Por favor selecione uma categoria!");
 					return;
 				}
-				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia, LocalDateTime.now());
+				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia);
 				Principal.setCorridaAtiva(corrida);
+				EmCorridaCliente emCorridaCliente = new EmCorridaCliente();
+				emCorridaCliente.setVisible(true);
 				//TODO abrir janela de procurarCorrida!!!!!!!!
 				//ProcurandoCorrida procurandoCorrida = new ProcurandoCorrida();
 				dispose();
