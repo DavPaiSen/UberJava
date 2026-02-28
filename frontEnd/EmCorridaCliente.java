@@ -12,6 +12,9 @@ import javax.swing.border.EmptyBorder;
 import backEnd.Principal;
 
 import javax.swing.JLabel;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class EmCorridaCliente extends JFrame {
 
@@ -53,6 +56,9 @@ public class EmCorridaCliente extends JFrame {
 		contentPane.add(labelNomeMotorista);
 		labelNomeMotorista.setText(Principal.getCorridaAtiva().getNomeMotorista());
 		
+		JLabel labelNotaMotorista = new JLabel("Nota do motorista: " + String.valueOf(Principal.getCorridaAtiva().getMotorista().getMedia()));
+		contentPane.add(labelNotaMotorista);
+		
 		JLabel lblNewLabel = new JLabel("                                                                                                                                                                                                                                                                        ");
 		contentPane.add(lblNewLabel);
 		
@@ -66,6 +72,26 @@ public class EmCorridaCliente extends JFrame {
 		float tempoEstimadoHoras = distancia / 40f; //assumindo uma media de 40km\h
 		float tempoRestanteHoras = tempoEstimadoHoras - duracao.toHours();
 		labelTempoRestante.setText(String.valueOf(tempoRestanteHoras * 60.0f) + "minutos");
+		
+		JButton btnCancelar = new JButton("Cancelar");
+		btnCancelar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Principal.getCorridaAtiva().cancela(Principal.getLogadoUsuario());
+				//System.out.println(Principal.getCorridaAtiva().getCancelada());
+				dispose();
+			}
+		});
+		contentPane.add(btnCancelar);
+		
+		JButton btnPularParaO = new JButton("Pular para o fim da corrida");
+		btnPularParaO.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				AvaliarMotorista avaliarMotorista = new AvaliarMotorista();
+				avaliarMotorista.setVisible(true);
+				dispose();
+			}
+		});
+		contentPane.add(btnPularParaO);
 		
 
 	}

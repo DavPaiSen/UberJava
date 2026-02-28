@@ -15,6 +15,23 @@ public class Principal {
 	private static Corrida corridaAtiva = null;
 	private static int categoria; //so por conveniencia
 
+	public static Corrida getCorrida(int i) {
+		if (i+1 > corridas.size()) {
+			return null;
+		}
+		return corridas.get(i);
+	}
+	public static Usuario getUsuario(int i) {
+		if (usuarios.size() < i-1) {
+			return null;
+		}
+		return usuarios.get(i);
+	}
+	
+	public static void adicionaCorrida(Corrida corrida) {
+		corridas.add(corrida);
+	}
+	
 	public static int getCategoria() {
 		return categoria;
 	}
@@ -49,6 +66,14 @@ public class Principal {
 			}
 		}
 		return retorno;
+	}
+	
+	public static void salvaUsuarios(){
+		try {
+			Persistencia.salvar(usuarios, "usuarios.dat");
+		} catch (IOException erro){
+			System.out.println(erro);
+		}
 	}
 	
 	public static void adicionaUsuario(Usuario adicionar) throws IOException {
@@ -163,7 +188,11 @@ public class Principal {
 		}
 	}
 	
-	public static void salvaMotoristas() throws IOException {
-		Persistencia.salvar(motoristas, "motoristas.dat");
+	public static void salvaMotoristas(){
+		try {
+			Persistencia.salvar(motoristas, "motoristas.dat");
+		} catch (IOException erro) {
+			System.out.println(erro);
+		}
 	}
 }

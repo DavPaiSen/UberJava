@@ -9,6 +9,9 @@ import javax.swing.border.EmptyBorder;
 import backEnd.Corrida;
 import backEnd.Motorista;
 import backEnd.Principal;
+import backEnd.UberBlack;
+import backEnd.UberComfort;
+import backEnd.UberPrioridade;
 import backEnd.UberX;
 
 import java.awt.FlowLayout;
@@ -134,24 +137,27 @@ public class PedirCorrida extends JFrame {
 					setTitle("Inserir apenas numeros na distancia!");
 					return;
 				}
+				Class<?> categoria = null;
 				if (chckbxUberx.isSelected()) {
 					Principal.setCategoria(0);
+					categoria = UberX.class;
 				} else if (chckbxUbercomfort.isSelected()) {
 					Principal.setCategoria(1);
+					categoria = UberComfort.class;
 				} else if (chckbxUberblack.isSelected()) {
 					Principal.setCategoria(2);
+					categoria = UberBlack.class;
 				} else if (chckbxUberprioridade.isSelected()) {
 					Principal.setCategoria(3);
+					categoria = UberPrioridade.class;
 				} else {
 					setTitle("Por favor selecione uma categoria!");
 					return;
 				}
-				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia);
+				Corrida corrida = new Corrida(null, Principal.getLogadoUsuario(), distancia, categoria);
 				Principal.setCorridaAtiva(corrida);
-				EmCorridaCliente emCorridaCliente = new EmCorridaCliente();
-				emCorridaCliente.setVisible(true);
-				//TODO abrir janela de procurarCorrida!!!!!!!!
-				//ProcurandoCorrida procurandoCorrida = new ProcurandoCorrida();
+				ProcurarCorridas procurarCorridas = new ProcurarCorridas();
+				procurarCorridas.setVisible(true);
 				dispose();
 			}
 		});

@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Corrida implements Serializable{
+	private Class<?> categoria;
 	private Motorista motorista;
 	private Usuario usuario;
 	private float distancia;
@@ -31,12 +32,13 @@ public class Corrida implements Serializable{
 	public void cancela(Pessoa quem) {
 		if (quem instanceof Usuario) {
 			cancelada = 1;
-		} else if (quem.getClass().getName() == "Motorista") {
+		} else if (quem instanceof Motorista) {
 			cancelada = 2;
 		}
 		encerrada = true;
 		finalizada();
 	}
+	
 	
 	public static float getPorcentagemMotorista() {
 		return porcentagemMotorista;
@@ -103,18 +105,43 @@ public class Corrida implements Serializable{
 		//recebe as notas do frontend e usa motorista.atualizarMedia() e usuario.atualizarMedia()
 		//finge que acontece coisas do pagamento preferencial do usuario???
 		veiculo.setStatus(0);
+		usuario.numeroViagens++;
+	}
+	
+	public void iniciarCorrida() {
+
+	    if (cancelada != 0 || encerrada) {
+	        return; // não pode iniciar se já foi cancelada
+	    }
+
+	    this.horaInicio = LocalDateTime.now();
+
+	    if (veiculo != null) {
+	        veiculo.setStatus(2);
+	    }
+	}
+	
+	public void alocarMotorista(Motorista motorista) {
+	    if (motorista == null) return;
+	    this.motorista = motorista;
+	    this.veiculo = motorista.veiculoAtivo();
+	    if (this.veiculo != null) {
+	   
+	        this.veiculo.setStatus(1);
+	    }
 	}
 	
 	public void setHoraInicio(LocalDateTime horaInicio) {
 		this.horaInicio = horaInicio;
 	}
 
-	public Corrida(Motorista motorista, Usuario usuario, float distancia) {
+	public Corrida(Motorista motorista, Usuario usuario, float distancia, Class<?> categoria) {
 		this.motorista = motorista;
 		this.usuario = usuario;
 		this.distancia = distancia;
 		horaSolicitacao = LocalDateTime.now();
 		cancelada = 0;
 		encerrada = false;
+		this.categoria = categoria;
 	}
 }

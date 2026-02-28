@@ -5,11 +5,18 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Principal;
+
 import javax.swing.BoxLayout;
+import javax.swing.ButtonGroup;
 import javax.swing.JSplitPane;
 import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class AvaliarPassageiro extends JFrame {
 
@@ -60,22 +67,53 @@ public class AvaliarPassageiro extends JFrame {
 		JPanel panel = new JPanel();
 		splitPane_1.setRightComponent(panel);
 		
-		JButton button = new JButton("1");
-		panel.add(button);
+		JCheckBox checkBox = new JCheckBox("1");
+		panel.add(checkBox);
 		
-		JButton button_1 = new JButton("2");
-		panel.add(button_1);
+		JCheckBox checkBox_1 = new JCheckBox("2");
+		panel.add(checkBox_1);
 		
-		JButton button_2 = new JButton("3");
-		panel.add(button_2);
+		JCheckBox checkBox_2 = new JCheckBox("3");
+		panel.add(checkBox_2);
 		
-		JButton button_3 = new JButton("4");
-		panel.add(button_3);
+		JCheckBox checkBox_3 = new JCheckBox("4");
+		panel.add(checkBox_3);
 		
-		JButton button_4 = new JButton("5");
-		panel.add(button_4);
+		JCheckBox checkBox_4 = new JCheckBox("5");
+		panel.add(checkBox_4);
 		
+		ButtonGroup avaliacao = new ButtonGroup();
+		avaliacao.add(checkBox_4);
+		avaliacao.add(checkBox_3);
+		avaliacao.add(checkBox_2);
+		avaliacao.add(checkBox_1);
+		avaliacao.add(checkBox);
+
 		JButton btnAvaliar = new JButton("Avaliar");
+		btnAvaliar.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				float nota;
+				if (checkBox.isSelected()) {
+					nota = 1;
+				} else if (checkBox_1.isSelected()) {
+					nota = 2;
+				} else if (checkBox_2.isSelected()) {
+					nota = 3;
+				} else if (checkBox_3.isSelected()) {
+					nota = 4;
+				} else if (checkBox_4.isSelected()) {
+					nota = 5;
+				} else {
+					setTitle("Selecione alguma nota!");
+					return;
+				}
+				Principal.getCorridaAtiva().getUsuario().atualizaMedia(nota);
+				Principal.getCorridaAtiva().finalizada();
+				Principal.salvaMotoristas();
+				Principal.salvaUsuarios();
+				dispose();
+			}
+		});
 		splitPane.setRightComponent(btnAvaliar);
 
 	}

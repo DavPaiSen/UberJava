@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import backEnd.Teste;
+
 import javax.swing.JSplitPane;
 import java.awt.BorderLayout;
 import javax.swing.JLabel;
@@ -55,6 +58,9 @@ public class EscolherVeiculo extends JFrame {
 		contentPane.add(panel);
 		panel.setLayout(new FlowLayout(FlowLayout.CENTER, 5, 5));
 		
+		JLabel lblSaldo = new JLabel("Saldo: " + backEnd.Principal.getLogadoMotorista().getSaldo());
+		panel.add(lblSaldo);
+		
 		JSplitPane splitPane = new JSplitPane();
 		panel.add(splitPane);
 		
@@ -72,9 +78,9 @@ public class EscolherVeiculo extends JFrame {
 				if (!backEnd.Principal.getLogadoMotorista().ativarVeiculo(placa)) {
 					setTitle("Veiculo nao encontrado!");
 				} else {
-					System.out.println("Veiculo encontrado!");
-					ProcurarCorridas procurarCorridas = new ProcurarCorridas();
-					procurarCorridas.setVisible(true);
+					Teste.solicitaCorridas(backEnd.Principal.getLogadoMotorista().veiculoAtivo().getClass());//cria uma corrida de teste com a categoria selecionada
+					EscolherCorrida escolherCorrida = new EscolherCorrida();
+					escolherCorrida.setVisible(true);
 					dispose();
 				}
 			}
