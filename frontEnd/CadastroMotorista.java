@@ -126,17 +126,20 @@ public class CadastroMotorista extends JFrame {
 				String cpf = txtCpf.getText();
 				String cnh = txtCnh.getText();
 				String dataNascimento = txtDataDeNascimento.getText();
+				String endereco = txtEndereco.getText();
 				
 				
 				if (Pessoa.cpfValido(cpf)) {
 					try {
-						Motorista motorista = new Motorista(cpf, nome, nomeSocial, cpf, dataNascimento, cnh);
+						Motorista motorista = new Motorista(cpf, nome, nomeSocial, endereco, dataNascimento, cnh);
 						backEnd.Principal.adicionarMotorista(motorista);
 					} catch (IOException e1) {
 						System.out.println("Erro ao abrir o arquivo!");
 						e1.printStackTrace();
 					}
-					//mudar de janela
+					EscolherVeiculo escolherVeiculo = new EscolherVeiculo();
+					escolherVeiculo.setVisible(true);
+					dispose();
 				} else {
 					setTitle("CPF invalido, tentar novamente!");
 				}

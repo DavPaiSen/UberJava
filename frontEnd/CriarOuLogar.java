@@ -37,6 +37,7 @@ public class CriarOuLogar extends JDialog {
 	 * Create the dialog.
 	 */
 	public CriarOuLogar() {
+		setTitle("Entrar ou cadastrar");
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setLayout(new FlowLayout());
