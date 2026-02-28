@@ -58,6 +58,8 @@ public class EscolherCorrida extends JFrame {
 		btnAceitar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Principal.setCorridaAtiva(Principal.getCorrida(i));
+				Principal.getCorridaAtiva().alocarMotorista(Principal.getLogadoMotorista());
+				Principal.getCorridaAtiva().iniciarCorrida();
 				EmCorridaMotorista emCorridaMotorista = new EmCorridaMotorista();
 				emCorridaMotorista.setVisible(true);
 				dispose();
