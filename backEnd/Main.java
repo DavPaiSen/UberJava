@@ -8,8 +8,12 @@ public abstract class Main {
 
 	public static void main(String[] args) throws ClassNotFoundException, IOException {
 		backEnd.Principal.inicio();
+		
+		//classe teste e so pra criar motoristas, passageiros e corridas exemplo
 		Teste.criaCliente();
 		Teste.criaMotoristas();
+		
+		
 		Usuario.setViagensParaVip(10);
 		UberX.setValorKm(1f); //valor por km e taxa minima do prioridade sao o dobro do UberX
 		UberX.setTaxaMinima(5f);

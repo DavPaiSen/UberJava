@@ -133,6 +133,7 @@ public class CadastroMotorista extends JFrame {
 					try {
 						Motorista motorista = new Motorista(cpf, nome, nomeSocial, endereco, dataNascimento, cnh);
 						backEnd.Principal.adicionarMotorista(motorista);
+						backEnd.Principal.setLogadoMotorista(motorista);
 					} catch (IOException e1) {
 						System.out.println("Erro ao abrir o arquivo!");
 						e1.printStackTrace();
